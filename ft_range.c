@@ -1,44 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int     *ft_range(int start, int end)
+long long	ft_abs(long long nb)
+{
+	if (nb < 0)
+		return (nb * (-1));
+	return nb;
+}
+
+int    *ft_range(int sta, int en)
 {
 	int *tab;
-	int cpt = 0;
-	int i = start;
-	if (start <= end)
-	{
-		while (i <= end)
-		{
-			i++;
-			cpt++;
-		}	
-	}
-	else if (start > end)
-	{
-		while (i >= end)
-		{
-			i--;
-			cpt++;
-		}	
-	}
-	tab = malloc(sizeof(int) * cpt);
+	long long start;
+	long long end;
+
+	start = (long long)sta;
+	end = (long long)en;
+	long long  cpt;
+	long long i;
+	cpt = ft_abs((long long)en - (long long)sta) + 1;
+	tab = (int *)malloc(sizeof(int) * cpt);
 	i = 0;
-	if (start <= end)
+	if (sta <= en)
 	{
-		while (start <= end)
+		while (i < cpt)
 		{
-			tab[i] = start;
-			start++;
+			tab[i] = sta + i;
 			i++;
 		}
 	}
-	else if (start > end)
+	else if (sta > en)
 	{
-		while (start >= end)
+		while (i < cpt)
 		{
-			tab[i] = start;
-			start--;
+			tab[i] = sta - i;
 			i++;
 		}
 	}
@@ -47,12 +42,26 @@ int     *ft_range(int start, int end)
 
 int main()
 {
-	int *tab = ft_range(0, -3);
-	int i = 0;
-	int	range = 4;
-	while (i < range)
+	long long  end = -2147483648;
+	long long start = 2147483647;
+	long long cpt = 4294967295;
+	int *tab = ft_range(start, end);
+	long long i;
+	i = 0;
+	if (start <= end)
 	{
-		printf("%d\t", tab[i]);
-		i++;
+		while (i < cpt)
+		{
+			printf("tab[%lld] = %d\n", i, tab[i]);
+			i++;
+		}
+	}
+	else if (start > end)
+	{
+		while (i < cpt)
+		{
+			printf("tab[%lld] = %d\n", i, tab[i]);
+			i++;
+		}
 	}
 }
